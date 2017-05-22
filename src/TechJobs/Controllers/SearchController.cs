@@ -10,6 +10,8 @@ namespace TechJobs.Controllers
         {
             ViewBag.columns = ListController.columnChoices;
             ViewBag.title = "Search";
+            ViewBag.columnChoice = "all";
+
             return View();
         }
 
@@ -20,7 +22,8 @@ namespace TechJobs.Controllers
             List<Dictionary<string, string>> jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
 
             ViewBag.columns = ListController.columnChoices;
-            ViewBag.title = "Jobs with " + ListController.columnChoices[searchType] + ": " + searchType;
+            ViewBag.title = "";
+            ViewBag.columnChoice = searchType;
             ViewBag.jobs = jobs;
 
             return View("Index");
