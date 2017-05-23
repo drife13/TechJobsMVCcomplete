@@ -23,12 +23,8 @@ namespace TechJobs.Controllers
         {
             List<Dictionary<string, string>> jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
 
-            Dictionary<string, string> jobFields = new Dictionary<string, string>(ListController.columnChoices);
-            jobFields.Add("name", "Name");
-            jobFields.Remove("all");
-
             ViewBag.columns = ListController.columnChoices;
-            ViewBag.fields = jobFields;
+            ViewBag.fields = ListController.jobFields;
             ViewBag.title = "";
             ViewBag.columnChoice = searchType;
             ViewBag.jobs = jobs;

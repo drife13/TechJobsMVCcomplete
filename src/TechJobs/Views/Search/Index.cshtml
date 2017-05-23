@@ -41,7 +41,21 @@
                 {
                     <tr>
                         <td>@ViewBag.fields[kv.Key]</td>
-                        <td>@kv.Value</td>
+                        <td>
+                            @if (ViewBag.columns.ContainsKey(kv.Key))
+                            {
+                                <a asp-controller="List"
+                                   asp-action="Jobs"
+                                   asp-route-column="@kv.Key"
+                                   asp-route-value="@kv.Value">
+                                    @kv.Value
+                                </a>
+                            }
+                            else
+                            {
+                                @kv.Value
+                            }
+                        </td>
                     </tr>
                 }
             </table>
