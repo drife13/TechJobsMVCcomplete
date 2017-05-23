@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Globalization;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TechJobs.Models;
 
@@ -11,7 +13,7 @@ namespace TechJobs.Controllers
             ViewBag.columns = ListController.columnChoices;
             ViewBag.title = "Search";
             ViewBag.columnChoice = "all";
-
+                        
             return View();
         }
 
@@ -21,11 +23,16 @@ namespace TechJobs.Controllers
         {
             List<Dictionary<string, string>> jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
 
+            Dictionary<string, string> jobFields = new Dictionary<string, string>(ListController.columnChoices);
+            jobFields.Add("name", "Name");
+            jobFields.Remove("all");
+
             ViewBag.columns = ListController.columnChoices;
+            ViewBag.fields = jobFields;
             ViewBag.title = "";
             ViewBag.columnChoice = searchType;
             ViewBag.jobs = jobs;
-
+                        
             return View("Index");
         }
 

@@ -40,7 +40,7 @@
                 @foreach (KeyValuePair<string, string> kv in job)
                 {
                     <tr>
-                        <td>@kv.Key</td>
+                        <td>@ViewBag.fields[kv.Key]</td>
                         <td>@kv.Value</td>
                     </tr>
                 }
